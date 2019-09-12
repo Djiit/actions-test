@@ -1,0 +1,27 @@
+on: push
+name: "y u no share workzpaces"
+jobs:
+  deps:
+    name: pre-build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+      - name: Print GitHub Context
+        run: echo "$GITHUB_CONTEXT"
+        env:
+          GITHUB_CONTEXT: ${{ toJson(github) }}
+      - name: install dependencies
+        run: yarn
+  build:
+    name: build
+    runs-on: ubuntu-latest
+    needs: deps
+    steps:
+      - name: Print GitHub Context
+        run: echo "$GITHUB_CONTEXT"
+        env:
+          GITHUB_CONTEXT: ${{ toJson(github) }}
+      - name: list files
+        run: ls -la
+      - name: do some stuff
+        run: yarn start
