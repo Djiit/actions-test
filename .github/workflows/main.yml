@@ -1,4 +1,6 @@
-on: push
+on:
+  push:
+  pull_request:
 name: "testing"
 jobs:
   debug:
@@ -6,6 +8,5 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
-      - name: Current dir
-        run: ls .
       - uses: hmarr/debug-action@v2
+      - run: ls -la .
